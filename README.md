@@ -47,3 +47,7 @@ End - node ID where the directed link ends.
 ## Goals
 
 The main goal of this project is to extract signals from this dataset; that is, to form plausible hypotheses about collaboration between students in particular and people in general. The evidence for these hypotheses provided by the considered dataset should be statistically significant. This will motivate testing the existence of derived signals in other collaboration networks (Piazza, other online forums, StackExchange, company email correspondence, etc). 
+
+## Acknowledgments 
+
+This repository was authored by [Amanda Li](https://github.com/amandaliusa), with contributions from Siqiao Mu and project mentorship and conception by [Professor Konstantin Zuev](https://github.com/Kostia-Zuev) (Caltech). 
