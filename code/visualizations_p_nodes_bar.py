@@ -6,18 +6,12 @@ from scipy.sparse import csr_matrix
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
 
+from pq_helper import get_dataframe
+
 '''
 Script for visualizing pq network via bar charts
 Author: Amanda Li
-'''
-
-def get_dataframe(path):
-    book = pd.ExcelFile(path)
-    p_nodes = book.parse('P-Nodes')
-    q_nodes = book.parse('Q-Nodes')
-    links = book.parse('Links')
-    mod_p_nodes = book.parse('P-Nodes-Modified')
-    return (p_nodes, q_nodes, links, mod_p_nodes)     
+'''     
 
 def bar_chart(x_axis, y_axis, x_label, y_label, title):
     index = np.arange(len(x_axis))

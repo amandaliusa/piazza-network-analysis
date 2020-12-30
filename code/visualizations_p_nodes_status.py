@@ -3,18 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from pq_helper import get_dataframe
+
 '''
 Script for visualizing pq network based on p-node status
 Author: Amanda Li
 '''
-
-def get_dataframe(path):
-    book = pd.ExcelFile(path)
-    p_nodes = book.parse('P-Nodes')
-    q_nodes = book.parse('Q-Nodes')
-    links = book.parse('Links')
-    mod_p_nodes = book.parse('P-Nodes-Modified')
-    return (p_nodes, q_nodes, links, mod_p_nodes)     
 
 def annotated_bar_chart(x_axis, y_axis, labels, shift, x_label, y_label, title):
     index = np.arange(len(x_axis))

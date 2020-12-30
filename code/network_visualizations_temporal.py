@@ -4,18 +4,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+from pq_helper import get_dataframe
+
 '''
 Script for creating temporal visualization of the pq network
 Author: Amanda Li
-'''
-
-def get_dataframe(path):
-    book = pd.ExcelFile(path)
-    p_nodes = book.parse('P-Nodes')
-    q_nodes = book.parse('Q-Nodes')
-    links = book.parse('Links')
-    mod_p_nodes = book.parse('P-Nodes-Modified')
-    return (p_nodes, q_nodes, links, mod_p_nodes)     
+'''   
 
 #----------------------------------------------------------------------
 if __name__ == "__main__":
