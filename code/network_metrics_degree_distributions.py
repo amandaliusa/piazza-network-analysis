@@ -95,7 +95,7 @@ if __name__ == '__main__':
     
     # list of p-nodes in-degrees (students only; note that instructors should 
     # all have in-degrees of zero, since they don't ask questions)
-    p_node_in = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 14, 18, 20]    
+    p_node_in = np.sort(mod_p_nodes['In-Degree'].value_counts().index)   
     
     # 1. 
     avg_p_in = [] # holds average in-degree of p-nodes with each out-degree 
@@ -145,10 +145,7 @@ if __name__ == '__main__':
     # 2.a
     
     # list of in-degrees of status=1 p-nodes (students only) 
-    status1_in = []
-    for i in range(184):
-        if mod_p_nodes['Status'][i] == 1:
-            status1_in.append(mod_p_nodes['In-Degree'][i])
+    status1_in = mod_p_nodes[:184].loc[mod_p_nodes[:184]['Status'] == 1]['In-Degree']
     
     #plt.hist(status1_in, bins=20, range=(0, 20))
     #plt.xlabel('P-Node In-Degree')
@@ -156,10 +153,7 @@ if __name__ == '__main__':
     #plt.title('Histogram of P-Node In-Degrees')
     
     # list of in-degrees of status=1 p-nodes (including TAs and instructor) 
-    status1_in_all = []
-    for i in range(196):
-        if p_nodes['Status'][i] == 1:
-            status1_in_all.append(p_nodes['In-Degree'][i])    
+    status1_in_all = p_nodes.loc[p_nodes['Status'] == 1]['In-Degree']    
     
     #plt.hist(status1_in_all, bins=20, range=(0, 20))
     #plt.xlabel('P-Node In-Degree')
@@ -167,10 +161,7 @@ if __name__ == '__main__':
     #plt.title('Histogram of P-Node In-Degrees')   
     
     # list of out-degrees of status=1 p-nodes (students only) 
-    status1_out = []
-    for i in range(184):
-        if mod_p_nodes['Status'][i] == 1:
-            status1_out.append(mod_p_nodes['Out-Degree'][i])    
+    status1_out = mod_p_nodes[:184].loc[mod_p_nodes[:184]['Status'] == 1]['Out-Degree']  
     
     #plt.hist(status1_out, bins=20, range=(0, 20))
     #plt.xlabel('P-Node Out-Degree')
@@ -178,10 +169,7 @@ if __name__ == '__main__':
     #plt.title('Histogram of P-Node Out-Degrees')  
     
     # list of out-degrees of status=1 p-nodes (including TAs and instructor) 
-    status1_out_all = []
-    for i in range(196):
-        if p_nodes['Status'][i] == 1:
-            status1_out_all.append(p_nodes['Out-Degree'][i])      
+    status1_out_all = p_nodes.loc[p_nodes['Status'] == 1]['Out-Degree']    
     
     #plt.hist(status1_out_all, bins=20, range=(0, 125))
     #plt.xlabel('P-Node Out-Degree')
