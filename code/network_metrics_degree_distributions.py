@@ -89,23 +89,9 @@ def avg_degree(sheet, total):
 if __name__ == '__main__':
     path = 'acm95a100a2018_anonymized_modified.xlsx'
     (p_nodes, q_nodes, links, mod_p_nodes) = get_dataframe(path)
-    
-    # To get out-degrees: 
-    out = links["Start"].value_counts()
-    #print(out) # doesn't show all the rows, so use the below instead.
-    nodes = links["Start"].value_counts().index
-    #for node in nodes:
-    #    print(node, out.loc[node])
         
     # list of p-nodes out-degrees (students only)
-    p_node_out = [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 17, 18, 20]
-        
-    # To get in-degrees: 
-    ins = links["End"].value_counts()
-    #print(ins) # doesn't show all the rows, so use the below instead.
-    nodes = links["End"].value_counts().index
-    #for node in nodes:
-    #    print(node, ins.loc[node]) 
+    p_node_out = np.sort(mod_p_nodes['Out-Degree'].value_counts().index)
     
     # list of p-nodes in-degrees (students only; note that instructors should 
     # all have in-degrees of zero, since they don't ask questions)
