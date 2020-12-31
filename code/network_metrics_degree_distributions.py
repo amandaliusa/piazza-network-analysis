@@ -6,13 +6,11 @@ import matplotlib.cm
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import powerlaw as pl
 from scipy.stats import chisquare
 from math import factorial
 from math import exp
 from scipy.stats.distributions import chi2
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from plfit import plfit
 from collections import Counter
 from pq_helper import get_dataframe
 
