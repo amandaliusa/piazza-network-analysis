@@ -35,56 +35,6 @@ def chi_squared_test(observed, mu, total):
     p = chi2.sf(testStatistic, len(observed) - 1)
     return (testStatistic, p)
 
-def color_by_nscore(Outdegree, Indegree, NScore):
-    df = pd.DataFrame(dict(Outdegree=Outdegree, Indegree=Indegree, 
-                           NScore=NScore))     
-    cmap = plt.cm.get_cmap('RdYlBu') 
-    
-    # Normalize to the range of possible values from NScore
-    norm = matplotlib.colors.Normalize(vmin=NScore.min(), vmax=NScore.max())
-    
-    # create a color dictionary  
-    colors = {}
-    for cval in NScore:
-        colors.update({cval : cmap(norm(cval))})
-    
-    fig = plt.figure(figsize=(20,5))
-    #fig = plt.figure(figsize=(200,5)) # use for zoomed view of outdegree 0
-    #fig = plt.figure(figsize=(50,5)) # use for zoomed view of outdegree 1        
-    m = sns.swarmplot(Outdegree, Indegree, hue=NScore, palette = colors)
-    plt.gca().legend_.remove()
-    plt.title('In-Degree vs Out-Degree of P-Nodes') 
-    
-    divider = make_axes_locatable(plt.gca())
-    ax_cb = divider.new_horizontal(size="5%", pad=0.05)
-    fig.add_axes(ax_cb)
-    clb = matplotlib.colorbar.ColorbarBase(ax_cb, cmap=cmap, norm=norm)
-    clb.set_label('N-Score')
-    plt.show()     
-    
-def avg_degree(sheet, total):
-    Outdegree = sheet['Out-Degree']
-    Indegree = sheet['In-Degree']  
-    total_out = 0
-    total_in = 0
-    counter = 0
-    
-    for i in range(total):
-        if sheet['Status'][i] == 1:
-            total_out += Outdegree[i]
-            counter += 1
-        
-    for i in range(total):
-        if sheet['Status'][i] == 1:
-            total_in += Indegree[i]
-            
-    # average outdegree of status 1 p-nodes
-    avg_out = total_out / counter
-    
-    # average indegree of status 1 p-nodes
-    avg_in = total_in / counter 
-    
-    return (avg_in, avg_out)
 #----------------------------------------------------------------------
 if __name__ == '__main__':
     path = 'acm95a100a2018_anonymized_modified.xlsx'
@@ -232,10 +182,3 @@ if __name__ == '__main__':
     expected.append(total - sum)
     (testStatistic5, p5) = chisquare(observed, f_exp=expected, ddof=4)    
     pValue5 = chi2.sf(testStatistic5, 4)
-    
-    # 2c - Status 1 nodes only - average in- and out-degrees 
-    # Students only - not including TAs and instructor
-    (avg_in, avg_out) = avg_degree(mod_p_nodes, 184)
-        
-    # including TAs and instructor
-    (avg_in2, avg_out2) = avg_degree(p_nodes, 196)    
